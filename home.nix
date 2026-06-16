@@ -3,13 +3,16 @@
 	home.username = "noite";
 	home.homeDirectory = "/home/noite";
 	home.stateVersion = "25.05";
+	xdg.enable = true;
 
 	home.file.".config" = {
 		source = ./dot;
 		recursive = true;
-	};
-	xdg.configFile."niri" = {
-		source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/dot/niri";
 		force = true;
 	};
+#	xdg.configFile."niri" = {
+#		source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/dot/niri/config.kdl";
+#		recursive = true;
+#		force = true;
+#	};
 }

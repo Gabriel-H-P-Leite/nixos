@@ -33,7 +33,7 @@
 	programs.bash = {
 		enable = true;
 		shellAliases = {
-			nrs = "sudo nixos-rebuild switch --flake";
+			nrs = "sudo nixos-rebuild switch --flake /etc/nixos";
 			nrsu = "sudo nixos-rebuild switch --flake --upgrade";
 			ncon = "sudo nvim /etc/nixos/configuration.nix";
 			ndel = "sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +5";

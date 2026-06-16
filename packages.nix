@@ -4,7 +4,7 @@
 	nixpkgs.config.allowUnfree = true;
 	environment.systemPackages = with pkgs; [
 		#INTERFACE 
-		niri nwg-look
+		niri quickshell nwg-look 
 		#AUDIO
 		pipewire wireplumber
 		#APPS
@@ -33,8 +33,8 @@
 	programs.bash = {
 		enable = true;
 		shellAliases = {
-			nrs = "sudo nixos-rebuild switch --flakes";
-			nrsu = "sudo nixos-rebuild switch --flakes --upgrade";
+			nrs = "sudo nixos-rebuild switch --flake";
+			nrsu = "sudo nixos-rebuild switch --flake --upgrade";
 			ncon = "sudo nvim /etc/nixos/configuration.nix";
 			hms = "home-manager switch";
 			neofetch = "fastfetch";

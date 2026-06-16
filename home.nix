@@ -5,8 +5,11 @@
 	home.stateVersion = "25.05";
 
 	home.file.".config" = {
-		source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/dot";
+		source = ./dot;
 		recursive = true;
+	};
+	xdg.configFile."niri" = {
+		source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/dot/niri";
 		force = true;
 	};
 }

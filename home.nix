@@ -5,7 +5,7 @@
 	home.stateVersion = "25.05";
 
 	home.file.".config/" = {
-		source = ./dot/ ;
+		source = ./dot ;
 		recursive = true;
 	};
 }

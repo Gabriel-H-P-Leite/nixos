@@ -1,3 +1,0 @@
-/submit/firefox-desktop/bounce-tracking-protection/1/75be0125-c0bf-4e9d-9093-5c0d8e9e79a4
-{"metrics":{"string_list":{"glean.ping.uploader_capabilities":["ohttp"]}},"events":[{"timestamp":0,"category":"bounce.tracking.protection","name":"purge_action","extra":{"bounce_time":"1781444596","success":"true","site_host":"raw.githubusercontent.com","glean_timestamp":"1781450809327","is_dry_run":"true"}},{"timestamp":0,"category":"bounce.tracking.protection","name":"purge_action","extra":{"glean_timestamp":"1781450809328","bounce_time":"1781445472","site_host":"google.com.br","is_dry_run":"true","success":"true"}}]}
-{"headers":{},"body_has_info_sections":false,"ping_name":"bounce-tracking-protection","uploader_capabilities":["ohttp"]}

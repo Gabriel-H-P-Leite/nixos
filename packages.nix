@@ -36,6 +36,7 @@
 			nrs = "sudo nixos-rebuild switch --flake";
 			nrsu = "sudo nixos-rebuild switch --flake --upgrade";
 			ncon = "sudo nvim /etc/nixos/configuration.nix";
+			ndel = "sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +5";
 			hms = "home-manager switch";
 			neofetch = "fastfetch";
 			ssh = "kitty +kitten ssh";

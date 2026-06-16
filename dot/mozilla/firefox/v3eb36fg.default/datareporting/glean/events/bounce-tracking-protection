@@ -1,0 +1,2 @@
+{"timestamp":3687187,"category":"bounce.tracking.protection","name":"purge_action","extra":{"success":"true","glean_timestamp":"1781617228177","site_host":"gist.githubusercontent.com","is_dry_run":"true","bounce_time":"1781569008"},"execution_counter":2}
+{"timestamp":3687187,"category":"bounce.tracking.protection","name":"purge_action","extra":{"is_dry_run":"true","glean_timestamp":"1781617228177","site_host":"raw.githubusercontent.com","bounce_time":"1781569048","success":"true"},"execution_counter":2}

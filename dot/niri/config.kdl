@@ -1,0 +1,220 @@
+input {
+	keyboard {
+	numlock
+		xkb {
+			    layout "br"
+		}
+	}
+	mouse {
+		accel-speed 0.0
+		accel-profile "flat"
+	}
+	warp-mouse-to-focus
+}
+debug {
+	honor-xdg-activation-with-invalid-serial
+}
+/-output "eDP-1" {
+	mode "1920x1080@120.030"
+	scale 1
+	transform "normal"
+	position x=1280 y=0
+}
+layout {
+	background-color "transparent"
+	gaps 5
+	preset-column-widths {
+	proportion 0.33333
+	proportion 0.5
+	}
+	default-column-width { proportion 0.5; }
+	focus-ring {
+	off
+	}
+	border {
+		on
+		width 1
+		active-color "#c3c3c3"
+		inactive-color "#676767"
+		urgent-color "#9b0000"
+	}
+	shadow {
+		on
+		softness 20
+		spread 0
+		offset x=0 y=0
+		color "#000000"
+	}
+}
+prefer-no-csd
+spawn-sh-at-startup "qs"
+screenshot-path "~/Imagens/NixOS %Y-%m-%d %H-%M-%S.png"
+hotkey-overlay {
+	skip-at-startup
+}
+animations {
+	slowdown 1.0
+}
+window-rule {
+	match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+	open-floating true
+}
+//REGRAS GERAIS
+blur {
+    on
+    passes 4
+    offset 2
+    saturation 1.0
+}
+window-rule {
+	geometry-corner-radius 20
+	clip-to-geometry true
+	open-maximized true
+	draw-border-with-background false
+	background-effect {
+		blur true 
+	}
+}
+layer-rule {
+	match namespace="^qs-modulesleft$"
+	geometry-corner-radius 0 0 20 0
+	background-effect {
+		blur true 
+	}
+}
+layer-rule {
+	match namespace="^qs-modulescenter$"
+	geometry-corner-radius 0 0 20 20
+	background-effect {
+		blur true 
+	}
+}
+layer-rule {
+	match namespace="^qs-modulesright$"
+	geometry-corner-radius 0 0 0 20
+	background-effect {
+		blur true 
+	}
+}
+layer-rule {
+	match namespace="^qs-wallpaper$"
+	place-within-backdrop true
+}
+overview {
+	workspace-shadow {
+		off
+	}
+}
+
+binds {
+//VOLUME e PLAYER
+XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
+XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
+XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+XF86AudioPlay        allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+XF86AudioStop        allow-when-locked=true { spawn-sh "playerctl stop"; }
+XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
+XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
+//BRILHO
+XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
+XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
+
+Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
+Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
+Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
+Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
+
+Mod+WheelScrollRight      { focus-column-right; }
+Mod+WheelScrollLeft       { focus-column-left; }
+Mod+Ctrl+WheelScrollRight { move-column-right; }
+Mod+Ctrl+WheelScrollLeft  { move-column-left; }
+
+Mod+Shift+WheelScrollDown      { focus-column-right; }
+Mod+Shift+WheelScrollUp        { focus-column-left; }
+Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
+Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
+
+Mod+Minus { set-column-width "-10%"; }
+Mod+Equal { set-column-width "+10%"; }
+Mod+Shift+Minus { set-window-height "-10%"; }
+Mod+Shift+Equal { set-window-height "+10%"; }
+
+/////////
+//MENUS//
+/////////
+
+//bind = $mainMod, W, exec,$menu 9 $wallpaper
+//bind = $mainMod, X, exec,$menu #MENUS
+//bind = Alt_L, F, exec, $menu 7
+//bind = $mainMod,SUPER_L, exec,$menu 1 #MENU APPS
+//bind = $mainMod,T, exec,$menu 4 #MENU TEMA
+//bind = $mainMod, V, exec,$menu 6 #MENU AREA DE TRANSFERENCIA 
+//bind = $mainMod ,N, exec, swaync-client -t -sw #MENU NOTIFICACOES
+//SAIR
+Ctrl+Alt+Delete { quit; }
+
+//////////////
+//UTILIDADES//
+//////////////
+
+//SCREENSHOT
+Mod+Shift+S hotkey-overlay-title="Screenshot" { screenshot; }
+//BLOQUEAR A TELA
+Ctrl+Alt+L hotkey-overlay-title="Bloquear o computador" { spawn "swaylock"; }
+//TERMINAL
+Mod+Return hotkey-overlay-title="Terminal" { spawn "kitty"; }
+//EXPLORADOR DE ARQUIVOS
+Mod+E hotkey-overlay-title="Explorador de arquivos" { spawn "Thunar"; }
+//NAVEGADOR
+Mod+B hotkey-overlay-title="Navegador" { spawn "firefox"; }
+//DESATIVAR ATALHOS
+Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+
+//FECHA APP
+Mod+C repeat=false { close-window; }
+//TELA CHEIA
+Mod+F { fullscreen-window; }
+//ALTERNA FLUTUANTE
+Mod+v { toggle-window-floating; }
+//REDIMENSIONA
+Mod+Z { maximize-column; }
+//LARGURAS
+Mod+R { switch-preset-column-width; }
+//VISAO
+Mod+Space repeat=false { toggle-overview; }
+
+///////////
+//JANELAS//
+///////////
+
+//MUDAR JANELA
+Mod+H { focus-column-left; }
+Mod+J { focus-window-or-workspace-down; }
+Mod+K { focus-window-or-workspace-up; }
+Mod+L { focus-column-right; }
+//MOVER JANELA
+Mod+Shift+H { move-column-left; }
+Mod+Shift+J { move-window-down-or-to-workspace-down; }
+Mod+Shift+K { move-window-up-or-to-workspace-up; }
+Mod+Shift+L { move-column-right; }
+//WORKSPACES NUMEROS
+Mod+1 { focus-workspace 1; }
+Mod+2 { focus-workspace 2; }
+Mod+3 { focus-workspace 3; }
+Mod+4 { focus-workspace 4; }
+Mod+5 { focus-workspace 5; }
+Mod+6 { focus-workspace 6; }
+Mod+7 { focus-workspace 7; }
+Mod+8 { focus-workspace 8; }
+Mod+9 { focus-workspace 9; }
+Mod+Shift+1 { move-window-to-workspace 1; }
+Mod+Shift+2 { move-window-to-workspace 2; }
+Mod+Shift+3 { move-window-to-workspace 3; }
+Mod+Shift+4 { move-window-to-workspace 4; }
+Mod+Shift+5 { move-window-to-workspace 5; }
+Mod+Shift+6 { move-window-to-workspace 6; }
+Mod+Shift+7 { move-window-to-workspace 7; }
+Mod+Shift+8 { move-window-to-workspace 8; }
+Mod+Shift+9 { move-window-to-workspace 9; }
+}

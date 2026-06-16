@@ -7,5 +7,6 @@
 	home.file.".config/" = {
 		source = ./dot ;
 		recursive = true;
+		force = true;
 	};
 }

@@ -1,7 +1,7 @@
-{ config, pkgs, ... }:
+{ config, pkgs, vars, ... }:
 {
-	home.username = "noite";
-	home.homeDirectory = "/home/noite";
+	home.username = vars.user;
+	home.homeDirectory = "/home/${vars.user}";
 	home.stateVersion = "25.05";
 	xdg.enable = true;
 
@@ -15,4 +15,5 @@
 #		recursive = true;
 #		force = true;
 #	};
+
 }

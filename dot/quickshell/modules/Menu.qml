@@ -13,6 +13,11 @@ Rectangle {
 	height: barH
 	width: volRow.implicitWidth
 	color: "transparent"
+	MouseArea {
+		anchors.fill: parent
+		onClicked: root.toggleLauncher()
+		cursorShape: Qt.PointingHandCursor
+	}
 	Row {
 		id: volRow
 		anchors.centerIn: parent

@@ -14,8 +14,11 @@ ShellRoot{
 	property var fontFamily: "Noto Sans"
 	property int fontSize: 15
 	property int barH: 33
+
 	LazyLoader { active: true; component: Left {} }
 	LazyLoader { active: true; component: Center {} }
 	LazyLoader { active: true; component: Right {} }
 	LazyLoader { active: true; component: Wallpaper {} }
+	LazyLoader { id: launcher; active: false; component: Launcher {} }
+	function toggleLauncher() { launcher.active = !launcher.active }
 }

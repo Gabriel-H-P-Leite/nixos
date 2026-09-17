@@ -143,6 +143,7 @@ Mod+Shift+Equal { set-window-height "+10%"; }
 /////////
 //MENUS//
 /////////
+Mod+A { spawn-sh "quickshell ipc call toggleLauncher onTriggered"; }
 
 //bind = $mainMod, W, exec,$menu 9 $wallpaper
 //bind = $mainMod, X, exec,$menu #MENUS

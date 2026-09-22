@@ -48,6 +48,7 @@ layout {
 }
 prefer-no-csd
 spawn-sh-at-startup "qs"
+spawn-sh-at-startup "xwayland-satellite"
 screenshot-path "~/Imagens/NixOS %Y-%m-%d %H-%M-%S.png"
 hotkey-overlay {
 	skip-at-startup

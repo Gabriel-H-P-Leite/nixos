@@ -41,6 +41,11 @@ services.getty.autologinUser = "noite";
 services.openssh.enable = true;
 nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+environment.sessionVariables = {
+	WAYLAND_DISPLAY = "wayland-1";
+	XDG_SESSION_TYPE = "wayland";
+	GDK_BACKEND = "wayland";
+};
 #NET
 networking.hostName = "nix";
 networking.networkmanager.enable = true;

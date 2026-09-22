@@ -14,6 +14,11 @@ input {
 debug {
 	honor-xdg-activation-with-invalid-serial
 }
+environment {
+	WAYLAND_DISPLAY "wayland-1"
+	XDG_SESSION_TYPE "wayland"
+	GDK_BACKEND "wayland"
+}
 /-output "eDP-1" {
 	mode "1920x1080@120.030"
 	scale 1
